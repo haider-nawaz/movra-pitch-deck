@@ -468,7 +468,7 @@ body::after {
 
 /* ═══ PRICING (4 TIERS) ═══ */
 .pricing-4 {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: .9rem;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: .9rem;
   max-width: 900px; width: 100%;
 }
 .price-card {
@@ -482,7 +482,7 @@ body::after {
   box-shadow: 0 4px 24px rgba(17, 125, 245, 0.12);
 }
 .price-card.pop::before {
-  content: 'Your Network'; position: absolute; top: -1px; left: 50%;
+  content: 'Recommended'; position: absolute; top: -1px; left: 50%;
   transform: translateX(-50%);
   font-size: .55rem; font-weight: 600;
   text-transform: uppercase; letter-spacing: .1em;
@@ -668,7 +668,7 @@ body.editing [contenteditable="true"]:focus { outline-color: var(--accent); }
 
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:900px) {
-  .pricing-4 { grid-template-columns: repeat(2, 1fr); }
+  .pricing-4 { grid-template-columns: repeat(3, 1fr); }
   .fail-grid { grid-template-columns: repeat(2, 1fr); }
   .insight-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -1359,36 +1359,29 @@ body.editing [contenteditable="true"]:focus { outline-color: var(--accent); }
      ══════════════════════════════════════ -->
 <section class="slide" data-slide="17" style="text-align:center;">
   <div class="tag reveal" data-editable>Partnership Pricing</div>
-  <h2 class="heading reveal reveal-d1" style="margin-bottom:1.25rem;" data-editable><span class="g">Enterprise</span> Partnership Pricing</h2>
+  <h2 class="heading reveal reveal-d1" style="margin-bottom:1.25rem;" data-editable><span class="g">Simple</span> Partnership Pricing</h2>
   <div class="pricing-4">
     <div class="price-card reveal reveal-d2">
-      <div class="price-tier" data-editable>Tier 1</div>
-      <div class="price-patients" data-editable>1–2,500 patients</div>
-      <div class="price-amt" data-editable>$2K</div>
-      <div class="price-unit" data-editable>/mo platform</div>
-      <div class="price-detail" data-editable>+ $5/patient/mo</div>
+      <div class="price-tier" data-editable>Solo Practice</div>
+      <div class="price-patients" data-editable>Single doctor clinic</div>
+      <div class="price-amt" data-editable>$97</div>
+      <div class="price-unit" data-editable>/month</div>
+      <div class="price-detail" data-editable>Full platform access for one provider</div>
     </div>
     <div class="price-card reveal reveal-d3">
-      <div class="price-tier" data-editable>Tier 2</div>
-      <div class="price-patients" data-editable>2,500–5,000 patients</div>
-      <div class="price-amt" data-editable>$3.5K</div>
-      <div class="price-unit" data-editable>/mo platform</div>
-      <div class="price-detail" data-editable>+ $5/patient/mo</div>
+      <div class="price-tier" data-editable>Single Clinic</div>
+      <div class="price-patients" data-editable>Multi-doctor, one location</div>
+      <div class="price-amt" data-editable>$297</div>
+      <div class="price-unit" data-editable>/month</div>
+      <div class="price-detail" data-editable>Dashboard + multi-provider management</div>
     </div>
     <div class="price-card pop reveal reveal-d4">
-      <div class="price-tier" data-editable>Tier 3</div>
-      <div class="price-patients" data-editable>5,000–20,000 patients</div>
-      <div class="price-amt" data-editable>$5K</div>
-      <div class="price-unit" data-editable>/mo platform</div>
-      <div class="price-detail" data-editable>+ $5/patient/mo</div>
-      <div class="price-profit" data-editable>→ $840K/yr profit</div>
-    </div>
-    <div class="price-card reveal reveal-d5">
-      <div class="price-tier" data-editable>Tier 4</div>
-      <div class="price-patients" data-editable>20,000+ patients</div>
-      <div class="price-amt" data-editable>Custom</div>
-      <div class="price-unit" data-editable>enterprise pricing</div>
-      <div class="price-detail" data-editable>Dedicated partnership</div>
+      <div class="price-tier" data-editable>Enterprise</div>
+      <div class="price-patients" data-editable>Multi-clinic, multi-doctor</div>
+      <div class="price-amt" data-editable>$1K–$10K</div>
+      <div class="price-unit" data-editable>/month</div>
+      <div class="price-detail" data-editable>Scaled to locations & providers</div>
+      <div class="price-profit" data-editable>→ Custom partnership</div>
     </div>
   </div>
   <div class="urgency-badge reveal reveal-d6" data-editable>
