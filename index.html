@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movra Pitch Deck — Design Variations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: #0C0C0E;
+  color: #F0F0F2;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 3rem 1.5rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ambient glow */
+body::before {
+  content: '';
+  position: fixed; top: -30%; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 600px;
+  background: radial-gradient(ellipse, rgba(74, 108, 247, 0.08) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+
+.page { position: relative; z-index: 1; max-width: 880px; width: 100%; }
+
+.logo-row {
+  display: flex; align-items: center; justify-content: center; gap: .75rem;
+  margin-bottom: 2.5rem;
+  opacity: 0; animation: fadeUp 0.6s ease forwards;
+}
+.logo-row img { height: 48px; border-radius: 10px; }
+.logo-row span {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem; font-weight: 600; letter-spacing: 0.04em;
+  color: #9CA3BE;
+}
+
+h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800; text-align: center;
+  letter-spacing: -0.03em; line-height: 1.15;
+  margin-bottom: .6rem;
+  opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards;
+}
+.subtitle {
+  text-align: center; color: #64708D;
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  margin-bottom: 3rem; line-height: 1.6;
+  opacity: 0; animation: fadeUp 0.6s ease 0.15s forwards;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.card {
+  position: relative;
+  background: #141418;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 2rem 1.75rem;
+  text-decoration: none; color: inherit;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  opacity: 0; animation: fadeUp 0.6s ease forwards;
+}
+.card:nth-child(1) { animation-delay: 0.2s; }
+.card:nth-child(2) { animation-delay: 0.28s; }
+.card:nth-child(3) { animation-delay: 0.36s; }
+.card:nth-child(4) { animation-delay: 0.44s; }
+
+/* Colored top accent line */
+.card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 16px 16px 0 0;
+}
+.card[data-theme="original"]::before { background: #2563EB; }
+.card[data-theme="editorial"]::before { background: #6B7F5E; }
+.card[data-theme="kinetic"]::before { background: #FF5733; }
+.card[data-theme="clinical"]::before { background: linear-gradient(90deg, #4A6CF7, #818CF8); }
+
+/* Hover glow per card */
+.card::after {
+  content: '';
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  border-radius: 16px;
+  opacity: 0; transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.card[data-theme="original"]::after { background: radial-gradient(ellipse at 50% 0%, rgba(37, 99, 235, 0.06) 0%, transparent 70%); }
+.card[data-theme="editorial"]::after { background: radial-gradient(ellipse at 50% 0%, rgba(107, 127, 94, 0.06) 0%, transparent 70%); }
+.card[data-theme="kinetic"]::after { background: radial-gradient(ellipse at 50% 0%, rgba(255, 87, 51, 0.06) 0%, transparent 70%); }
+.card[data-theme="clinical"]::after { background: radial-gradient(ellipse at 50% 0%, rgba(74, 108, 247, 0.06) 0%, transparent 70%); }
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.card:hover::after { opacity: 1; }
+
+.card-badge {
+  font-size: 0.62rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  padding: .25rem .65rem; border-radius: 100px;
+  display: inline-block; width: fit-content;
+  margin-bottom: 1rem;
+}
+.card[data-theme="original"] .card-badge { background: rgba(37, 99, 235, 0.12); color: #5B8DEF; }
+.card[data-theme="editorial"] .card-badge { background: rgba(107, 127, 94, 0.12); color: #8FA87E; }
+.card[data-theme="kinetic"] .card-badge { background: rgba(255, 87, 51, 0.12); color: #FF7B5C; }
+.card[data-theme="clinical"] .card-badge { background: rgba(74, 108, 247, 0.12); color: #7B96FA; }
+
+.card-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-weight: 700; margin-bottom: .35rem;
+  letter-spacing: -0.01em;
+}
+.card-sub {
+  color: #64708D; font-size: clamp(0.78rem, 1vw, 0.88rem);
+  line-height: 1.55; flex: 1;
+}
+
+.card-colors {
+  display: flex; gap: .4rem; margin-top: 1.2rem;
+}
+.card-colors span {
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.08);
+}
+
+.card-arrow {
+  position: absolute; bottom: 1.75rem; right: 1.75rem;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; color: #64708D;
+  transition: all 0.3s ease;
+}
+.card:hover .card-arrow {
+  background: rgba(255,255,255,0.08);
+  color: #F0F0F2;
+  transform: translateX(2px);
+}
+
+.footer {
+  margin-top: 3rem; text-align: center;
+  color: #3A3F52; font-size: 0.72rem;
+  opacity: 0; animation: fadeUp 0.6s ease 0.55s forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+  body { padding: 2rem 1rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="logo-row">
+    <img src="movra-logo.png" alt="Movra">
+    <span>Pitch Deck Variations</span>
+  </div>
+
+  <h1>Choose a Design Direction</h1>
+  <p class="subtitle">Four distinct visual approaches for the Movra × Curis pitch deck.<br>Click any card to view the full presentation.</p>
+
+  <div class="grid">
+
+    <a class="card" href="curis-pitch.html" data-theme="original">
+      <div class="card-badge">Original</div>
+      <div class="card-title">Dark Monochrome</div>
+      <div class="card-sub">Stripe/Linear aesthetic. Black background, restrained blue accents, Inter typeface. Clean and technical.</div>
+      <div class="card-colors">
+        <span style="background:#09090B;"></span>
+        <span style="background:#2563EB;"></span>
+        <span style="background:#22C55E;"></span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a class="card" href="curis-pitch-v1-editorial.html" data-theme="editorial">
+      <div class="card-badge">V1 — Editorial</div>
+      <div class="card-title">Warm Editorial</div>
+      <div class="card-sub">Kinfolk magazine aesthetic. Cream background, sage green accents, DM Serif Display serifs. Quiet and refined.</div>
+      <div class="card-colors">
+        <span style="background:#F5F0EB;"></span>
+        <span style="background:#6B7F5E;"></span>
+        <span style="background:#C45B4A;"></span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a class="card" href="curis-pitch-v2-kinetic.html" data-theme="kinetic">
+      <div class="card-badge">V2 — Kinetic</div>
+      <div class="card-title">Bold Kinetic</div>
+      <div class="card-sub">Nike/Peloton energy. Deep navy background, electric coral accents, Bebas Neue condensed type. High impact.</div>
+      <div class="card-colors">
+        <span style="background:#0A1628;"></span>
+        <span style="background:#FF5733;"></span>
+        <span style="background:#00E676;"></span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a class="card" href="curis-pitch-v3-clinical.html" data-theme="clinical">
+      <div class="card-badge">V3 — Clinical</div>
+      <div class="card-title">Soft Clinical Premium</div>
+      <div class="card-sub">Apple keynote feel. Light airy background, glassmorphism cards, Outfit typeface, gradient accents. Premium and clean.</div>
+      <div class="card-colors">
+        <span style="background:#F7F8FC;"></span>
+        <span style="background:#4A6CF7;"></span>
+        <span style="background:#10B981;"></span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+  </div>
+
+  <div class="footer">Movra × Curis — Pitch Deck Showcase</div>
+</div>
+
+</body>
+</html>
